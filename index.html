@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bardoso</title>
+  <link rel="icon" type="image/x-icon" href="https://images.squarespace-cdn.com/content/v1/6776d57fa6e1065accfcfe2a/37be9d08-70f0-426f-a07a-9d821d48d185/favicon.ico?format=100w">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Nunito Sans', sans-serif;
+      background: #fff;
+      color: #000;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    
+    header {
+      padding: 24px 0;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      text-decoration: none;
+      color: #000;
+    }
+    
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+    
+    .hero-no {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(4rem, 15vw, 10rem);
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+    
+    .hero p {
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .hero .results {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      margin-top: 24px;
+    }
+    
+    .testimonials {
+      padding: 60px 0;
+    }
+
+    .carousels-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .carousel-container,
+    .single-video {
+      position: relative;
+      width: 100%;
+    }
+
+    .carousel-wrapper {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.1);
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      padding: 40px;
+    }
+
+    .carousel-slide img {
+      max-width: 100%;
+      max-height: 450px;
+      width: auto;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      margin: 0 auto;
+    }
+
+    .carousel-slide.video-placeholder {
+      background: #f5f5f5;
+      min-height: 400px;
+      color: #666;
+      font-size: 0.875rem;
+      text-align: center;
+    }
+
+    .single-video .carousel-wrapper {
+      box-shadow: none;
+    }
+
+    .single-video .carousel-slide {
+      padding: 0;
+      background: #fff;
+    }
+
+    .single-video video {
+      width: 100%;
+      max-height: 600px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .carousel-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ddd;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.3s;
+    }
+
+    .carousel-dot.active {
+      background: #000;
+      width: 24px;
+      border-radius: 5px;
+    }
+    
+    .cta-section {
+      padding: 80px 0;
+      text-align: center;
+    }
+    
+    .cta-section p {
+      font-size: 1.25rem;
+      margin-bottom: 16px;
+    }
+    
+    .cta-section .what-i-do {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 8vw, 4rem);
+      margin-bottom: 24px;
+    }
+    
+    .cta-section .description {
+      max-width: 600px;
+      margin: 0 auto 32px;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 16px 32px;
+      background: #000;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: opacity 0.2s;
+    }
+    
+    .btn:hover {
+      opacity: 0.8;
+    }
+    
+    .faq {
+      padding: 60px 0 80px;
+      border-top: 1px solid #eee;
+    }
+    
+    .faq h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.5rem;
+      margin-bottom: 32px;
+    }
+    
+    .faq-item {
+      border-bottom: 1px solid #eee;
+    }
+    
+    .faq-item:first-child {
+      border-top: 1px solid #eee;
+    }
+    
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 20px 0;
+      font-size: 1.125rem;
+      font-family: inherit;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .faq-question::after {
+      content: '+';
+      font-size: 1.5rem;
+      font-weight: 300;
+      transition: transform 0.2s;
+    }
+    
+    .faq-item.open .faq-question::after {
+      transform: rotate(45deg);
+    }
+    
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+    
+    .faq-item.open .faq-answer {
+      max-height: 200px;
+    }
+    
+    .faq-answer p {
+      padding-bottom: 20px;
+      color: #444;
+    }
+    
+    @media (max-width: 768px) {
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .hero {
+        padding: 60px 0 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="/" class="logo">Systems</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1 class="hero-no">No.</h1>
+        <p>We won't waste your time with sales tactics or a fancy website.</p>
+        <p>Here's all that matters:</p>
+        <p class="results">RESULTS.</p>
+      </div>
+    </section>
+
+    <section class="testimonials">
+      <div class="container">
+        <div class="carousels-stack">
+
+          <!-- Video 1 - Robyn -->
+          <div class="single-video">
+            <div class="carousel-wrapper">
+              <div class="carousel-slide">
+                <video controls playsinline>
+                  <source src="https://res.cloudinary.com/do7pmxytw/video/upload/v1767554782/Robyn_Skincare_mussqa.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carousel 1 - First 3 images -->
+          <div class="carousel-container" data-carousel="1">
+            <div class="carousel-wrapper">
+              <div class="carousel-track">
+                <div class="carousel-slide">
+                  <img src="https://res.cloudinary.com/do7pmxytw/image/upload/v1767553113/Group_14_ib7vpr.png" alt="Results">
+                </div>
+
+                <div class="carousel-slide">
+                  <img src="https://res.cloudinary.com/do7pmxytw/image/upload/v1767553113/image_6_kb6jym.png" alt="Results">
+                </div>
+
+                <div class="carousel-slide">
+                  <img src="https://res.cloudinary.com/do7pmxytw/image/upload/v1767553114/EM1_j2uyos.png" alt="Email results">
+                </div>
+              </div>
+            </div>
+            <div class="carousel-dots"></div>
+          </div>
+
+          <!-- Video 2 - Lumbazzi -->
+          <div class="single-video">
+            <div class="carousel-wrapper">
+              <div class="carousel-slide">
+                <video controls playsinline>
+                  <source src="https://res.cloudinary.com/do7pmxytw/video/upload/v1767555002/Lumbazzi_ttigo0.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carousel 2 - Next 3 images -->
+          <div class="carousel-container" data-carousel="2">
+            <div class="carousel-wrapper">
+              <div class="carousel-track">
+                <div class="carousel-slide">
+                  <img src="https://res.cloudinary.com/do7pmxytw/image/upload/v1767553114/SEO1_whskxg.png" alt="SEO results">
+                </div>
+
+                <div class="carousel-slide">
+                  <img src="https://res.cloudinary.com/do7pmxytw/image/upload/v1767553114/EM3_zixd0a.png" alt="Email results">
+                </div>
+
+                <div class="carousel-slide">
+                  <img src="https://res.cloudinary.com/do7pmxytw/image/upload/v1767553114/sm2_mfpohx.png" alt="Social media results">
+                </div>
+              </div>
+            </div>
+            <div class="carousel-dots"></div>
+          </div>
+
+          <!-- Video 3 - Empyrean -->
+          <div class="single-video">
+            <div class="carousel-wrapper">
+              <div class="carousel-slide">
+                <video controls playsinline>
+                  <source src="https://res.cloudinary.com/do7pmxytw/video/upload/v1767554969/Empyrean_gokgmg.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carousel 3 - Next 3 images -->
+          <div class="carousel-container" data-carousel="3">
+            <div class="carousel-wrapper">
+              <div class="carousel-track">
+                <div class="carousel-slide">
+                  <img src="https://res.cloudinary.com/do7pmxytw/image/upload/v1767553114/SEO2_u1w3we.png" alt="SEO results">
+                </div>
+
+                <div class="carousel-slide">
+                  <img src="https://res.cloudinary.com/do7pmxytw/image/upload/v1767553115/EM2_hrtyo9.png" alt="Email results">
+                </div>
+
+                <div class="carousel-slide">
+                  <img src="https://res.cloudinary.com/do7pmxytw/image/upload/v1767553114/image_5_rnovm1.png" alt="Results">
+                </div>
+              </div>
+            </div>
+            <div class="carousel-dots"></div>
+          </div>
+
+          <!-- Video 4 - Zen -->
+          <div class="single-video">
+            <div class="carousel-wrapper">
+              <div class="carousel-slide">
+                <video controls playsinline>
+                  <source src="https://res.cloudinary.com/do7pmxytw/video/upload/v1767554755/Zen_bemm8i.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carousel 4 - Last 2 images -->
+          <div class="carousel-container" data-carousel="4">
+            <div class="carousel-wrapper">
+              <div class="carousel-track">
+                <div class="carousel-slide">
+                  <img src="https://res.cloudinary.com/do7pmxytw/image/upload/v1767553114/sm1_tlkzfb.png" alt="Social media results">
+                </div>
+
+                <div class="carousel-slide">
+                  <img src="https://res.cloudinary.com/do7pmxytw/image/upload/v1767553114/sm3_yffpmm.png" alt="Social media results">
+                </div>
+              </div>
+            </div>
+            <div class="carousel-dots"></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <p>What we do:</p>
+        <h2 class="what-i-do">SYSTEMS.</h2>
+        <p class="description">We build automated customer loyalty systems without the need for ads so you can focus on the creative side of your brand.</p>
+        <a href="https://calendly.com/roger-bardoso" target="_blank" class="btn">No-obligation call</a>
+      </div>
+    </section>
+
+    <section class="faq">
+      <div class="container">
+        <h2>FAQ</h2>
+        
+        <div class="faq-item">
+          <button class="faq-question">What exactly do you do?</button>
+          <div class="faq-answer">
+            <p>We create marketing systems for small eCom brands that attract customers for you without you lifting a finger.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <button class="faq-question">How much do you charge?</button>
+          <div class="faq-answer">
+            <p>Each brand is unique, so it's impossible to throw a number. That being said, we are paid solely on results.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <button class="faq-question">What are your guarantees?</button>
+          <div class="faq-answer">
+            <p>We keep it simple: No results = no payment. We agree on a revenue milestone to hit with your brand, and if we don't achieve it, you don't have to pay and you keep the assets we built for you.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // FAQ functionality
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.parentElement.classList.toggle('open');
+      });
+    });
+
+    // Carousel functionality - Initialize all carousels
+    const carouselContainers = document.querySelectorAll('.carousel-container');
+
+    // Random delays for each carousel (0.5-2 seconds)
+    const delays = [500, 1200, 1900, 600];
+
+    carouselContainers.forEach((container, index) => {
+      const track = container.querySelector('.carousel-track');
+      const slides = Array.from(track.children);
+      const dotsContainer = container.querySelector('.carousel-dots');
+
+      let currentSlide = 0;
+      let autoAdvanceInterval;
+
+      // Create dots
+      slides.forEach((_, slideIndex) => {
+        const dot = document.createElement('button');
+        dot.classList.add('carousel-dot');
+        dot.setAttribute('aria-label', `Go to slide ${slideIndex + 1}`);
+        if (slideIndex === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(slideIndex));
+        dotsContainer.appendChild(dot);
+      });
+
+      const dots = Array.from(dotsContainer.children);
+
+      // Update carousel position
+      function updateCarousel() {
+        const slideWidth = slides[0].getBoundingClientRect().width;
+        track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+
+        // Update dots
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[currentSlide].classList.add('active');
+      }
+
+      // Go to specific slide
+      function goToSlide(slideIndex) {
+        currentSlide = slideIndex;
+        updateCarousel();
+        resetAutoAdvance();
+      }
+
+      // Next slide (auto-loop)
+      function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        updateCarousel();
+      }
+
+      // Auto-advance
+      function startAutoAdvance() {
+        autoAdvanceInterval = setInterval(nextSlide, 3000);
+      }
+
+      function resetAutoAdvance() {
+        clearInterval(autoAdvanceInterval);
+        startAutoAdvance();
+      }
+
+      // Handle window resize
+      window.addEventListener('resize', updateCarousel);
+
+      // Start auto-advance with staggered delay
+      setTimeout(() => {
+        startAutoAdvance();
+      }, delays[index]);
+    });
+  </script>
+</body>
+</html>
